@@ -1,0 +1,3998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.12">
+<meta name="description" content="This guide describes the basic structure of an AsciiDoc document, how to create your first AsciiDoc document, how to add other structural elements such as lists, block quotes and source code, and how to convert an AsciiDoc document to HTML, DocBook and PDF.">
+<meta name="keywords" content="AsciiDoc, Asciidoctor, syntax, reference, learn, how to, writers, authors">
+<meta name="author" content="Dan Allen, Sarah White">
+<title>AsciiDoc Writer&#8217;s Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment @import statement to use as custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*::before,*::after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite::before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details>summary:first-of-type{cursor:pointer;display:list-item;outline:none;margin-bottom:.75em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid currentColor;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid currentColor;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
+ul.inline{display:-ms-flexbox;display:-webkit-box;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);-webkit-border-radius:50%;border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media print,amzn-kf8{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>AsciiDoc Writer&#8217;s Guide</h1>
+<div class="details">
+<span id="author" class="author">Dan Allen</span><br>
+<span id="email" class="email"><a href="https://github.com/mojavelinux">@mojavelinux</a></span><br>
+<span id="author2" class="author">Sarah White</span><br>
+<span id="email2" class="email"><a href="https://github.com/graphitefriction">@graphitefriction</a></span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#writing-in-asciidoc">Writing in AsciiDoc</a>
+<ul class="sectlevel2">
+<li><a href="#its-just-text-mate">It&#8217;s just text, mate.</a></li>
+<li><a href="#content-is-king">Content is king!</a></li>
+<li><a href="#admonitions">Admonitions</a></li>
+<li><a href="#mild-punctuation-strong-impact">Mild punctuation, strong impact</a></li>
+<li><a href="#lists-lists-lists">Lists, lists, lists</a></li>
+<li><a href="#links-and-images">Links and images</a></li>
+<li><a href="#titles-titles-titles">Titles, titles, titles</a></li>
+</ul>
+</li>
+<li><a href="#building-blocks-in-asciidoc">Building blocks in AsciiDoc</a>
+<ul class="sectlevel2">
+<li><a href="#delimited-blocks">Delimited blocks</a></li>
+<li><a href="#block-metadata">Block metadata</a></li>
+<li><a href="#masquerading-blocks">Masquerading blocks</a></li>
+<li><a href="#delimiters-optional">Delimiters optional</a></li>
+<li><a href="#a-new-perspective-on-tables">A new perspective on tables</a></li>
+</ul>
+</li>
+<li><a href="#what-else-can-asciidoc-do">What else can AsciiDoc do?</a></li>
+<li><a href="#converting-your-document">Converting your document</a>
+<ul class="sectlevel2">
+<li><a href="#converting-a-document-to-html-5">Converting a document to HTML 5</a></li>
+<li><a href="#converting-a-document-to-docbook">Converting a document to DocBook</a></li>
+<li><a href="#output-galore">Output galore</a></li>
+<li><a href="#where-else-is-asciidoc-supported">Where else is AsciiDoc supported?</a></li>
+</ul>
+</li>
+<li><a href="#wrap-up">Wrap-up</a></li>
+<li><a href="#glossary">Glossary</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide provides a gentle introduction to AsciiDoc, a <em>plain text</em> documentation <strong>syntax</strong> and <strong>processor</strong>.
+This introduction is intended for anyone who wants to reduce the effort required to write and publish content, whether for technical documentation, articles, web pages or good ol'-fashioned prose.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you want to know what AsciiDoc is all about, find the answer in <a href="https://docs.asciidoctor.org/asciidoc/latest/#about-asciidoc">About AsciiDoc</a>.
+If you&#8217;re looking for a concise survey of the AsciiDoc syntax, consult the <a href="https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/">AsciiDoc Syntax Quick Reference</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In this guide, you&#8217;ll learn:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The basic structure of an AsciiDoc document</p>
+</li>
+<li>
+<p>How to create your first AsciiDoc document</p>
+</li>
+<li>
+<p>How to add other structural elements such as lists, block quotes and source code</p>
+</li>
+<li>
+<p>How to convert an AsciiDoc document to HTML, DocBook and PDF</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In addition to covering the AsciiDoc basics, this guide also suggests a set of conventions to help you create more consistent documents and maximize your writing productivity.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s dive in to AsciiDoc!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="writing-in-asciidoc"><a class="anchor" href="#writing-in-asciidoc"></a>Writing in AsciiDoc</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The goal of this section is to teach you how to compose your first AsciiDoc document.
+Hopefully, when you look back, you&#8217;ll agree it just makes sense.</p>
+</div>
+<div class="paragraph">
+<p>Your adventure with AsciiDoc begins in your favorite text editor.</p>
+</div>
+<div class="sect2">
+<h3 id="its-just-text-mate"><a class="anchor" href="#its-just-text-mate"></a>It&#8217;s just text, mate.</h3>
+<div class="paragraph">
+<p>Since AsciiDoc syntax is just <em>plain text</em>, you can write an AsciiDoc document using <em>any</em> text editor.
+You don&#8217;t need complex word processing programs like Microsoft Word, OpenOffice Writer or Google Docs.
+In fact, you <em>shouldn&#8217;t</em> use these programs because they add cruft to your document (that you can&#8217;t see) and makes conversion tedious.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+While it&#8217;s true any text editor will do, I recommend selecting an editor that supports syntax highlighting for AsciiDoc.
+The <strong><span class="red">c</span><span class="green">o</span><span class="purple">l</span><span class="fuchsia">o</span><span class="blue">r</span></strong> brings contrast to the text, making it easier to read.
+The highlighting also confirms when you&#8217;ve entered the correct syntax for an inline or block element.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The most popular application for editing plain text on macOS is <strong>TextMate</strong>.
+A similar choice on Linux is <strong>GEdit</strong>.
+On Windows, stay away from Notepad and Wordpad because they produce plain text which is not cross-platform friendly.
+Opt instead for a competent text editor like <strong>Notepad++</strong>.
+If you&#8217;re a programmer (or a writer with an inner geek), you&#8217;ll likely prefer <strong>Vim</strong>, <strong>Emacs</strong>, or <strong>Sublime Text</strong>, all of which are available cross-platform.
+The key feature all these editors share is syntax highlighting for AsciiDoc.</p>
+</div>
+<div class="paragraph">
+<p>Open up your favorite text editor and get ready to write some AsciiDoc!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="content-is-king"><a class="anchor" href="#content-is-king"></a>Content is king!</h3>
+<div class="paragraph">
+<p>The bulk of the content in a document is paragraph text.
+This is why Asciidoctor doesn&#8217;t require any special markup or attributes to specify paragraph content.
+You can just start typing.</p>
+</div>
+<div class="paragraph">
+<p>In Asciidoctor, adjacent or consecutive lines of text form a paragraph element.
+To start a new paragraph after another element, such as a section title or table, hit the <kbd>RETURN</kbd> key twice to insert a blank line, and then continue typing your content.</p>
+</div>
+<div class="listingblock">
+<div class="title">Two paragraphs in an AsciiDoc document</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">This journey begins one late Monday afternoon in Antwerp.
+Our team desperately needs coffee, but none of us dare open the office door.
+
+To leave means code dismemberment and certain death.</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">The two paragraphs rendered using the default (html5) converter and stylesheet (asciidoctor.css)</div>
+<div class="content">
+<div class="paragraph">
+<p>This journey begins one late Monday afternoon in Antwerp.
+Our team desperately needs coffee, but none of us dare open the office door.</p>
+</div>
+<div class="paragraph">
+<p>To leave means code dismemberment and certain death.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Just like that, <strong>you&#8217;re writing in AsciiDoc!</strong>
+As you can see, it&#8217;s just like writing an e-mail.</p>
+</div>
+<div class="paragraph">
+<p>Save the file with a file extension of <code>.adoc</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you want to find out how to convert the document to HTML, DocBook or PDF, skip ahead to the section on <a href="#converting-your-document">Converting your document</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="wrapped-text-and-hard-line-breaks"><a class="anchor" href="#wrapped-text-and-hard-line-breaks"></a>Wrapped text and hard line breaks</h4>
+<div class="paragraph">
+<p>Since adjacent lines of text are combined into a single paragraph when Asciidoctor converts a document, that means you can wrap paragraph text or put each sentence or phrase on a separate line.
+The line breaks won&#8217;t appear in the output.</p>
+</div>
+<div class="paragraph">
+<p>However, if you want the line breaks in a paragraph to be preserved, you can either use a space followed by a plus sign (<code>&#43;</code>) or set the <code>hardbreaks</code> option on the paragraph.
+This results in a visible line break (e.g., <code>&lt;br&gt;</code>) following each line.</p>
+</div>
+<div class="listingblock">
+<div class="title">Line breaks preserved using a space followed by the plus sign (&#43;)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Rubies are red, +
+Topazes are blue.</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Rubies are red,<br>
+Topazes are blue.</p>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Line breaks preserved using the hardbreaks option</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[%hardbreaks]
+Ruby is red.
+Java is black.</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Ruby is red.<br>
+Java is black.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>To preserve line breaks throughout your whole document, add the <code>hardbreaks</code> attribute to the document&#8217;s header.</p>
+</div>
+<div class="listingblock">
+<div class="title">Line breaks preserved throughout the document using the hardbreaks attribute</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">= Line Break Doc Title
+:hardbreaks:
+
+Rubies are red,
+Topazes are blue.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="admonitions"><a class="anchor" href="#admonitions"></a>Admonitions</h3>
+<div class="paragraph">
+<p>There are certain statements you may want to draw attention to by taking them out of the content&#8217;s flow and labeling them with a priority.
+These are called admonitions.
+It&#8217;s rendered style is determined by the assigned label (i.e., value).
+Asciidoctor provides five admonition style labels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NOTE</code></p>
+</li>
+<li>
+<p><code>TIP</code></p>
+</li>
+<li>
+<p><code>IMPORTANT</code></p>
+</li>
+<li>
+<p><code>CAUTION</code></p>
+</li>
+<li>
+<p><code>WARNING</code></p>
+</li>
+</ul>
+</div>
+<div id="caution-vs-warning" class="sidebarblock">
+<div class="content">
+<div class="title">Caution vs. Warning</div>
+<div class="paragraph">
+<p>When choosing the admonition type, you may find yourself getting confused between "caution" and "warning" as these words are often used interchangeably.
+Here&#8217;s a simple rule to help you differentiate the two:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use <strong>CAUTION</strong> to advise the reader to <em>act</em> carefully (i.e., exercise care).</p>
+</li>
+<li>
+<p>Use <strong>WARNING</strong> to inform the reader of danger, harm, or consequences that exist.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To find a deeper analysis, see <a href="https://www.differencebetween.com/difference-between-caution-and-vs-warning/" class="bare">https://www.differencebetween.com/difference-between-caution-and-vs-warning/</a>.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>When you want to call attention to a single paragraph, start the first line of the paragraph with the label you want to use.
+The label must be uppercase and followed by a colon (<code>:</code>).</p>
+</div>
+<div class="listingblock">
+<div class="title">Admonition paragraph syntax</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">WARNING: Wolpertingers are known to nest in server racks. <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
+Enter at your own risk.</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The label must be uppercase and immediately followed by a colon (<code>:</code>).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Separate the first line of the paragraph from the label by a single space.</td>
+</tr>
+</table>
+</div>
+<div class="exampleblock">
+<div class="title">Result: Admonition paragraph</div>
+<div class="content">
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Wolpertingers are known to nest in server racks.
+Enter at your own risk.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>An admonition paragraph is rendered in a callout box with the admonition label&#8212;&#8203;or its corresponding icon&#8212;&#8203;in the gutter.
+Icons are enabled by setting the <code>icons</code> attribute on the document.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Admonitions can also encapsulate any block content, which we&#8217;ll cover later.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mild-punctuation-strong-impact"><a class="anchor" href="#mild-punctuation-strong-impact"></a>Mild punctuation, strong impact</h3>
+<div class="paragraph">
+<p>Just as we emphasize certain words and phrases when we speak, we can emphasize them in text by surrounding them with punctuation.
+AsciiDoc refers to this markup as <em>quoted text</em>.</p>
+</div>
+<div class="sect3">
+<h4 id="quoted-text"><a class="anchor" href="#quoted-text"></a>Quoted text</h4>
+<div class="paragraph">
+<p>For instance, in an e-mail, you might &#8220;speak&#8221; a word louder by enclosing it in asterisks.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">I can't believe it, we *won*!</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you would expect, the asterisks make the text <strong>won</strong> bold.
+You can almost sense the emotion.
+This is one example of quoted (i.e., formatted) text.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The term &#8220;quote&#8221; is used liberally here to apply to any symbols that surround text in order to apply emphasis or special meaning.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Here are the forms of quoted text that AsciiDoc recognizes:</p>
+</div>
+<div class="listingblock">
+<div class="title">Bold, italic, and monospace formatting syntax</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">bold *constrained* &amp; **un**constrained
+
+italic _constrained_ &amp; __un__constrained
+
+bold italic *_constrained_* &amp; **__un__**constrained
+
+monospace `constrained` &amp; ``un``constrained
+
+monospace bold `*constrained*` &amp; ``**un**``constrained
+
+monospace italic `_constrained_` &amp; ``__un__``constrained
+
+monospace bold italic `*_constrained_*` &amp; ``**__un__**``constrained</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When you want to quote text (e.g., place emphasis) somewhere other than at the boundaries of a word, you need to double up the punctuation.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Result: Bold, italic, and monospace text</div>
+<div class="content">
+<div class="paragraph">
+<p>bold <strong>constrained</strong> &amp; <strong>un</strong>constrained</p>
+</div>
+<div class="paragraph">
+<p>italic <em>constrained</em> &amp; <em>un</em>constrained</p>
+</div>
+<div class="paragraph">
+<p>bold italic <strong><em>constrained</em></strong> &amp; <strong><em>un</em></strong>constrained</p>
+</div>
+<div class="paragraph">
+<p>monospace <code>constrained</code> &amp; <code>un</code>constrained</p>
+</div>
+<div class="paragraph">
+<p>monospace bold <code><strong>constrained</strong></code> &amp; <code><strong>un</strong></code>constrained</p>
+</div>
+<div class="paragraph">
+<p>monospace italic <code><em>constrained</em></code> &amp; <code><em>un</em></code>constrained</p>
+</div>
+<div class="paragraph">
+<p>monospace bold italic <code><strong><em>constrained</em></strong></code> &amp; <code><strong><em>un</em></strong></code>constrained</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Any quoted text can be prefixed with an attribute list.
+The first positional attribute is treated as a role.
+The role can be used to apply custom styling to the text.
+For instance:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Type the word [.userinput]#asciidoc# into the search bar.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When converting to HTML, the word &#8220;asciidoc&#8221; is wrapped in <code>&lt;span&gt;</code> tags and the role is used as the element&#8217;s CSS class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;span class="userinput"&gt;asciidoc&lt;/span&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can apply styles to the text using CSS.</p>
+</div>
+<div class="paragraph">
+<p>You may not always want these substitutions to take place.
+In those cases, you&#8217;ll need to use markup to escape the text.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="preventing-substitution"><a class="anchor" href="#preventing-substitution"></a>Preventing substitution</h4>
+<div class="paragraph">
+<p>If you are getting quoted text behavior where you don&#8217;t want it, you can use a backslash or a passthrough macro to prevent it.</p>
+</div>
+<div class="paragraph">
+<p>Asciidoctor provides several approaches for preventing substitutions.</p>
+</div>
+<div class="paragraph">
+<div class="title">Backslash escaping</div>
+<p>To prevent punctuation from being interpreted as formatting markup, precede it with a backslash (<code>\</code>).
+If the formatting punctuation begins with two characters (e.g., <code>__</code>), you need to precede it with two backslashes (<code>\\</code>).
+This is also how you can prevent character and attribute references from substitution.
+When your document is processed, the backslash is removed so it doesn&#8217;t display in your output.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">\*Stars* will appear as *Stars*, not as bold text.
+
+\&amp;sect; will appear as an entity, not the &amp;sect; symbol.
+
+\\__func__ will appear as __func__, not as emphasized text.
+
+\{two-semicolons} will appear {two-semicolons}, not resolved as ;;.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Asciidoctor supports several forms of the passthrough macro.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">inline pass macro</dt>
+<dd>
+<p>An inline macro named <code>pass</code> that can be used to passthrough content.
+Supports an optional set of substitutions.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">pass:[content like #{variable} passed directly to the output] followed by normal content.
+
+content with only select substitutions applied: pass:c,a[__&lt;{email}&gt;__]</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">single and double plus</dt>
+<dd>
+<p>A special syntax for preventing text from being formatted.
+Only escapes special characters for compliance with the output format and doesn&#8217;t support explicit substitutions.</p>
+</dd>
+<dt class="hdlist1">triple plus</dt>
+<dd>
+<p>A special syntax for designating passthrough content.
+Does not apply any substitutions (equivalent to the inline pass macro) and doesn&#8217;t support explicit substitutions.</p>
+</dd>
+<dt class="hdlist1">double dollar (deprecated)</dt>
+<dd>
+<p>A deprecated special syntax for designating passthrough content.
+Like the triple plus, does not apply any substitutions and doesn&#8217;t support explicit substitutions.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Asciidoctor does not implement the block pass macro.
+Instead, you should use a <a href="#pass-blocks">pass block</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="inline-pass-macro-and-explicit-substitutions"><a class="anchor" href="#inline-pass-macro-and-explicit-substitutions"></a>Inline pass macro and explicit substitutions</h4>
+<div class="paragraph">
+<p>To exclude a phrase from substitutions and disable escaping of special characters, enclose it in the inline pass macro.
+For example, here&#8217;s one way to format text as underline when generating HTML from AsciiDoc:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">The text pass:[&lt;u&gt;underline me&lt;/u&gt;] is underlined.</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>The text <u>underline me</u> is underlined.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to enable ad-hoc <code>quotes</code> substitution, then assign the <code>macros</code> value to <code>subs</code> and use the inline pass macro.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[subs=+macros] <i class="conum" data-value="1"></i><b>(1)</b>
+----
+I better not contain *bold* or _italic_ text.
+pass:quotes[But I should contain *bold* text.] <i class="conum" data-value="2"></i><b>(2)</b>
+----</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>macros</code> is assigned to <code>subs</code>, which allows any macros within the block to be processed.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The pass macro is assigned the <code>quotes</code> value. Text within the square brackets will be formatted.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The inline pass macro does introduce additional markup into the source code that could make it invalid in raw form.
+However, the output it produces will be valid when viewed in a viewer (HTML, PDF, etc.).</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">I better not contain *bold* or _italic_ text.
+But I should contain <strong>bold</strong> text.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The inline pass macro also accepts shorthand values for specifying substitutions.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>c</code> = special characters</p>
+</li>
+<li>
+<p><code>q</code> = quotes</p>
+</li>
+<li>
+<p><code>a</code> = attributes</p>
+</li>
+<li>
+<p><code>r</code> = replacements</p>
+</li>
+<li>
+<p><code>m</code> = macros</p>
+</li>
+<li>
+<p><code>p</code> = post replacements</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, the quotes text substitution value is assigned in the inline passthrough macro below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">The text pass:q[&lt;u&gt;underline *me*&lt;/u&gt;] is underlined and the word "`me`" is bold.</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>The text <u>underline <strong>me</strong></u> is underlined and the word &#8220;me&#8221; is bold.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="triple-plus-passthrough"><a class="anchor" href="#triple-plus-passthrough"></a>Triple plus passthrough</h4>
+<div class="paragraph">
+<p>The triple-plus passthrough works much the same way as the pass macro.
+To exclude content from substitutions, enclose it in triple pluses (+++).</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>+++content passed directly to the output+++ followed by normal content.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The triple-plus macro is often used to output custom HTML or XML.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">The text +++&lt;u&gt;underline me&lt;/u&gt;+++ is underlined.</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>The text <u>underline me</u> is underlined.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Single plus enclosure</div>
+<p>To exclude a phrase from substitutions, enclose it in plus signs (<code>+</code>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">This +*literal*+ will appear as *literal*.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="replacements"><a class="anchor" href="#replacements"></a>Replacements</h4>
+<div class="paragraph">
+<p>AsciiDoc also recognizes textual representations of symbols, arrows and dashes.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Textual symbol replacements</caption>
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-center valign-top">Syntax</th>
+<th class="tableblock halign-center valign-top">Unicode Replacement</th>
+<th class="tableblock halign-center valign-top">Rendered</th>
+<th class="tableblock halign-left valign-top">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Copyright</p></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>(C)</pre></div></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>&amp;#169;</pre></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#169;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Registered</p></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>(R)</pre></div></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>&amp;#174;</pre></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#174;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trademark</p></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>(TM)</pre></div></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>&amp;#8482;</pre></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#8482;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Em dash</p></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>--</pre></div></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>&amp;#8212;</pre></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#8201;&#8212;&#8201;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only replaced if between two word characters, between a word character and a line boundary, or flanked by spaces.</p>
+<p class="tableblock">When flanked by space characters (e.g., <code>a -- b</code>), the normal spaces are replaced by thin spaces (&amp;#8201;).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ellipsis</p></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>...</pre></div></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>&amp;#8230;</pre></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#8230;&#8203;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Single right arrow</p></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>-&gt;</pre></div></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>&amp;#8594;</pre></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#8594;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Double right arrow</p></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>=&gt;</pre></div></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>&amp;#8658;</pre></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#8658;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Single left arrow</p></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>&lt;-</pre></div></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>&amp;#8592;</pre></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#8592;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Double left arrow</p></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>&lt;=</pre></div></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>&amp;#8656;</pre></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#8656;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Typographic apostrophe</p></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>Sam's</pre></div></td>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre>Sam&amp;#8217;s</pre></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Sam&#8217;s</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The typewriter apostrophe is replaced with the typographic (aka curly) apostrophe.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This mild punctuation does not take away from the readability of the text.
+In fact, you could argue that it makes the text easier to read.
+What&#8217;s important is that these are conventions with which you are likely already familiar.</p>
+</div>
+<div class="paragraph">
+<p>Punctuation is used in AsciiDoc to create another very common type of element in documents, <em>lists!</em></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="lists-lists-lists"><a class="anchor" href="#lists-lists-lists"></a>Lists, lists, lists</h3>
+<div class="paragraph">
+<p>There are three types of lists supported in AsciiDoc:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Unordered</p>
+</li>
+<li>
+<p>Ordered</p>
+</li>
+<li>
+<p>Description</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Unordered and ordered lists are structurally very similar.
+They consist of items that are prefixed by different types of markers (i.e., bullet).
+In contrast, description lists&#8212;&#8203;also called variable, labeled, or term-definition lists&#8212;&#8203;are collections of terms that each have their own supporting content.
+Unlike unordered and ordered lists, description lists are rarely nested, though they often contain the former.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s explore each type of list, then mix them together.
+We&#8217;ll also look at how to put complex content inside a list item.</p>
+</div>
+<div class="sect3">
+<h4 id="lists-of-things"><a class="anchor" href="#lists-of-things"></a>Lists of things</h4>
+<div class="paragraph">
+<p>If you were to create a list in an e-mail, how would you do it?
+Chances are, you&#8217;d mark list items using the same characters that Asciidoctor uses to find list items.</p>
+</div>
+<div class="paragraph">
+<p>In the example below, each list item is marked using an asterisk (<code>*</code>), the AsciiDoc syntax specifying an unordered list item.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* Edgar Allan Poe
+* Sheri S. Tepper
+* Bill Bryson</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A list item&#8217;s first line of text must be offset from the marker (<code>*</code>) by at least one space.
+If you prefer, you can indent list items.
+Blank lines are required before and after a list.
+Additionally, blank lines are permitted, but not required, between list items.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Rendered unordered list</div>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edgar Allan Poe</p>
+</li>
+<li>
+<p>Sheri S. Tepper</p>
+</li>
+<li>
+<p>Bill Bryson</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You can add a title to a list by prefixing the title with a period (<code>.</code>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.Kizmet's Favorite Authors
+* Edgar Allan Poe
+* Sheri S. Tepper
+* Bill Bryson</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Rendered unordered list with a title</div>
+<div class="content">
+<div class="ulist">
+<div class="title">Kizmet&#8217;s Favorite Authors</div>
+<ul>
+<li>
+<p>Edgar Allan Poe</p>
+</li>
+<li>
+<p>Sheri S. Tepper</p>
+</li>
+<li>
+<p>Bill Bryson</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Was your instinct to use a hyphen (<code>-</code>) instead of an asterisk to mark list items?
+Guess what?
+That works too!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">- Edgar Allan Poe
+- Sheri S. Tepper
+- Bill Bryson</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should reserve the hyphen for lists that only have a single level because the hyphen marker (<code>-</code>) doesn&#8217;t work for nested lists.
+Now that we&#8217;ve mentioned nested lists, let&#8217;s go to the next section and learn how to create lists with multiple levels.</p>
+</div>
+<div id="separating-lists" class="sidebarblock">
+<div class="content">
+<div class="title">Separating Lists</div>
+<div class="paragraph">
+<p>If you have adjacent lists, they have the tendency to want to fuse together.
+To force lists apart, insert a line comment (<code>//</code>) surrounded by blank lines between the two lists.
+Here&#8217;s an example, where the <code>-</code> text in the line comment indicates the line serves as an &#8220;end of list&#8221; marker:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* Apples
+* Oranges
+
+//-
+
+* Walnuts
+* Almonds</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>To nest an item, just add another asterisk (<code>*</code>) to the marker, and another for each subsequent level.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.Possible DefOps manual locations
+* West wood maze
+** Maze heart
+*** Reflection pool
+** Secret exit
+* Untracked file in git repository</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Rendered nested, unordered list</div>
+<div class="content">
+<div class="ulist">
+<div class="title">Possible DefOps manual locations</div>
+<ul>
+<li>
+<p>West wood maze</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Maze heart</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reflection pool</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Secret exit</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Untracked file in git repository</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>In Asciidoctor 1.5.7 and earlier you could only have up to six (6) levels of nesting (assuming one level uses the hyphen marker).</p>
+</div>
+<div class="paragraph">
+<p>Since Asciidoctor 1.5.8, you can nest unordered lists to any depth.
+Keep in mind, however, that some interfaces will begin flattening lists after a certain depth.
+GitHub starts flattening list after 10 levels of nesting.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* level 1
+** level 2
+*** level 3
+**** level 4
+***** level 5
+* level 1</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>level 1</p>
+<div class="ulist">
+<ul>
+<li>
+<p>level 2</p>
+<div class="ulist">
+<ul>
+<li>
+<p>level 3</p>
+<div class="ulist">
+<ul>
+<li>
+<p>level 4</p>
+<div class="ulist">
+<ul>
+<li>
+<p>level 5</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>level 1</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>While it would seem as though the number of asterisks represents the nesting level, that&#8217;s not how depth is determined.
+A new level is created for each unique marker encountered.
+However, it&#8217;s much more intuitive to follow the convention that the number of asterisks equals the level of nesting.
+After all, we&#8217;re shooting for plain text markup that is readable <em>as is</em>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ordering-the-things"><a class="anchor" href="#ordering-the-things"></a>Ordering the things</h4>
+<div class="paragraph">
+<p>Sometimes, we need to number the items in a list.
+Instinct might tell you to prefix each item with a number, like in this next list:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">1. Protons
+2. Electrons
+3. Neutrons</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above works, but
+since the numbering is obvious, the AsciiDoc processor will insert the numbers for you if you omit them:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">. Protons
+. Electrons
+. Neutrons</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Protons</p>
+</li>
+<li>
+<p>Electrons</p>
+</li>
+<li>
+<p>Neutrons</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If you decide to use number for your ordered list, you have to keep them sequential.
+This differs from other lightweight markup languages.
+It&#8217;s one way to adjust the numbering offset of a list.
+For instance, you can type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">4. Step four
+5. Step five
+6. Step six</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However, in general the best practice is to use the <code>start</code> attribute to configure this sort of thing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[start=4]
+. Step four
+. Step five
+. Step six</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To present the items in reverse order, add the <code>reversed</code> option:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[%reversed]
+.Parts of an atom
+. Protons
+. Electrons
+. Neutrons</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="olist arabic">
+<div class="title">Parts of an atom</div>
+<ol class="arabic" reversed>
+<li>
+<p>Protons</p>
+</li>
+<li>
+<p>Electrons</p>
+</li>
+<li>
+<p>Neutrons</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You can give a list a title by prefixing the line with a dot immediately followed by the text (without leaving any space after the dot).</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s an example of a list with a title:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.Parts of an atom
+. Protons
+. Electrons
+. Neutrons</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="olist arabic">
+<div class="title">Parts of an atom</div>
+<ol class="arabic">
+<li>
+<p>Protons</p>
+</li>
+<li>
+<p>Electrons</p>
+</li>
+<li>
+<p>Neutrons</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You create a nested item by using one or more dots in front of each the item.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">. Step 1
+. Step 2
+.. Step 2a
+.. Step 2b
+. Step 3</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>AsciiDoc selects a different number scheme for each level of nesting.
+Here&#8217;s how the previous list renders:</p>
+</div>
+<div class="exampleblock">
+<div class="title">A nested ordered list</div>
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Step 1</p>
+</li>
+<li>
+<p>Step 2</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Step 2a</p>
+</li>
+<li>
+<p>Step 2b</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Step 3</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Like with the asterisks in an unordered list, the number of dots in an ordered list doesn&#8217;t represent the nesting level.
+However, it&#8217;s much more intuitive to follow this convention:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+# of dots = level of nesting
+</blockquote>
+</div>
+<div class="paragraph">
+<p>Again, we are shooting for plain text markup that is readable <em>as is</em>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Asciidoctor works hard to infer the relationships between the items that are most intuitive to us humans.
+Here&#8217;s an example of nesting an unordered list inside of an ordered list:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">. Linux
+* Fedora
+* Ubuntu
+* Slackware
+. BSD
+* FreeBSD
+* NetBSD</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Linux</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Fedora</p>
+</li>
+<li>
+<p>Ubuntu</p>
+</li>
+<li>
+<p>Slackware</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>BSD</p>
+<div class="ulist">
+<ul>
+<li>
+<p>FreeBSD</p>
+</li>
+<li>
+<p>NetBSD</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You can spread the items out and indent the nested lists if that makes it more readable for you:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">. Linux
+
+  * Fedora
+  * Ubuntu
+  * Slackware
+
+. BSD
+
+  * FreeBSD
+  * NetBSD</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following table shows the numbering scheme used by default for each nesting level.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Ordered list numbering scheme by level</caption>
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Level</th>
+<th class="tableblock halign-left valign-top">Numbering Scheme</th>
+<th class="tableblock halign-left valign-top">Examples</th>
+<th class="tableblock halign-left valign-top">CSS class (HTML converter)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arabic</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. 2. 3.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arabic</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lower Alpha</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a. b. c.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">loweralpha</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lower Roman</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">i. ii. iii.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lowerroman</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Upper Alpha</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A. B. C.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">upperalpha</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Upper Roman</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I. II. III.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">upperroman</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>You can override the number scheme for any level by setting its style (the first positional entry in a block attribute list).
+You can also set the starting number using the <code>start</code> attribute:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[lowerroman, start=5]
+. Five
+. Six
+[loweralpha]
+.. a
+.. b
+.. c
+. Seven</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="description-lists"><a class="anchor" href="#description-lists"></a>Description lists</h4>
+<div class="paragraph">
+<p>A description list (often abbreviate as dlist) is useful when you need to include a description or supporting text for one or more terms.
+Each item in a description list consists of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>one or more terms</p>
+</li>
+<li>
+<p>a separator following each term (typically a double colon, <code>::</code>)</p>
+</li>
+<li>
+<p>at least one space or endline</p>
+</li>
+<li>
+<p>the supporting content (either text, attached blocks, or both)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s an example of a description list that identifies parts of a computer:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CPU:: The brain of the computer.
+Hard drive:: Permanent storage for operating system and/or user files.
+RAM:: Temporarily stores information the CPU uses during operation.
+Keyboard:: Used to enter text or control items on the screen.
+Mouse:: Used to point to and select items on your computer screen.
+Monitor:: Displays information in visual form using text and graphics.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By default, the content of each item is displayed below the description when rendered.
+Here&#8217;s a preview of how this list is rendered:</p>
+</div>
+<div class="exampleblock">
+<div class="title">A basic description list</div>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">CPU</dt>
+<dd>
+<p>The brain of the computer.</p>
+</dd>
+<dt class="hdlist1">Hard drive</dt>
+<dd>
+<p>Permanent storage for operating system and/or user files.</p>
+</dd>
+<dt class="hdlist1">RAM</dt>
+<dd>
+<p>Temporarily stores information the CPU uses during operation.</p>
+</dd>
+<dt class="hdlist1">Keyboard</dt>
+<dd>
+<p>Used to enter text or control items on the screen.</p>
+</dd>
+<dt class="hdlist1">Mouse</dt>
+<dd>
+<p>Used to point to and select items on your computer screen.</p>
+</dd>
+<dt class="hdlist1">Monitor</dt>
+<dd>
+<p>Displays information in visual form using text and graphics.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want the description and content to appear on the same line, add the horizontal style to the list.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[horizontal]
+CPU:: The brain of the computer.
+Hard drive:: Permanent storage for operating system and/or user files.
+RAM:: Temporarily stores information the CPU uses during operation.</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+CPU
+</td>
+<td class="hdlist2">
+<p>The brain of the computer.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Hard drive
+</td>
+<td class="hdlist2">
+<p>Permanent storage for operating system and/or user files.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+RAM
+</td>
+<td class="hdlist2">
+<p>Temporarily stores information the CPU uses during operation.</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The content of a description list can be any AsciiDoc element.
+For instance, we could rewrite the grocery list from above so that each aisle is a description rather than a parent outline list item.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Dairy::
+* Milk
+* Eggs
+Bakery::
+* Bread
+Produce::
+* Bananas</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Dairy</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Milk</p>
+</li>
+<li>
+<p>Eggs</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Bakery</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Bread</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Produce</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Bananas</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Description lists are quite lenient about whitespace, so you can spread the items out and even indent the content if that makes it more readable for you:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Dairy::
+
+  * Milk
+  * Eggs
+
+Bakery::
+
+  * Bread
+
+Produce::
+
+  * Bananas</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="hybrid-lists"><a class="anchor" href="#hybrid-lists"></a>Hybrid lists</h4>
+<div id="three-hybrid" class="paragraph">
+<p>Finally, you can mix and match the three list types within a single hybrid list.
+Asciidoctor works hard to infer the relationships between the items that are most intuitive to us humans.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s a list that mixes description, ordered, and unordered list items:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Operating Systems::
+  Linux:::
+    . Fedora
+      * Desktop
+    . Ubuntu
+      * Desktop
+      * Server
+  BSD:::
+    . FreeBSD
+    . NetBSD
+
+Cloud Providers::
+  PaaS:::
+    . OpenShift
+    . CloudBees
+  IaaS:::
+    . Amazon EC2
+    . Rackspace</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s how the list is rendered:</p>
+</div>
+<div class="exampleblock">
+<div class="title">A hybrid list</div>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Operating Systems</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Linux</dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Fedora</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Desktop</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Ubuntu</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Desktop</p>
+</li>
+<li>
+<p>Server</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</dd>
+<dt class="hdlist1">BSD</dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>FreeBSD</p>
+</li>
+<li>
+<p>NetBSD</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</dd>
+<dt class="hdlist1">Cloud Providers</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">PaaS</dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>OpenShift</p>
+</li>
+<li>
+<p>CloudBees</p>
+</li>
+</ol>
+</div>
+</dd>
+<dt class="hdlist1">IaaS</dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Amazon EC2</p>
+</li>
+<li>
+<p>Rackspace</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You can include more complex content in a list item as well.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="links-and-images"><a class="anchor" href="#links-and-images"></a>Links and images</h3>
+<div class="paragraph">
+<p>AsciiDoc makes it easy to include links, images and other types of media in a document.</p>
+</div>
+<div class="sect3">
+<h4 id="external-links"><a class="anchor" href="#external-links"></a>External links</h4>
+<div class="paragraph">
+<p>There&#8217;s nothing you have to do to make a link to a URL.
+Just include the URL in the document and AsciiDoc will turn it into a link.</p>
+</div>
+<div class="paragraph">
+<p>Asciidoctor recognizes the following common schemes without the help of any markup.</p>
+</div>
+<div id="schemes" class="ulist">
+<ul>
+<li>
+<p>http</p>
+</li>
+<li>
+<p>https</p>
+</li>
+<li>
+<p>ftp</p>
+</li>
+<li>
+<p>irc</p>
+</li>
+<li>
+<p>mailto</p>
+</li>
+<li>
+<p>email@email.com</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can think of these like implicit macro names (the bare email address being a special case).
+Since the URL in the example below begins with a protocol (in this case <em>https</em> followed by a colon), Asciidoctor will automatically turn it into a hyperlink when it is processed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">The homepage for the Asciidoctor Project is https://asciidoctor.org. <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The trailing period will not get caught up in the link.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To prevent automatic linking of an URL, prepend it with a backslash (<code>\</code>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Once launched, the site will be available at \https://example.org.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you prefer URLs to be shown with the scheme hidden, set the <code>hide-uri-scheme</code> attribute in the document&#8217;s header.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:hide-uri-scheme:
+
+https://asciidoctor.org</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When the hide-uri-scheme attribute is set, the above URL will render as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;a href="https://asciidoctor.org"&gt;asciidoctor.org&lt;/a&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note the absence of <em>https</em> inside the <code>&lt;a&gt;</code> element.</p>
+</div>
+<div class="paragraph">
+<p>To attach a URL to text, enclose the text in square brackets at the end of the URL, thus making it an URL macro:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Chat with other Fedora users in the irc://irc.freenode.org/#fedora[Fedora IRC channel].</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When a URL does not start with one of the <a href="#schemes">common schemes</a>, or the URL is not surrounded by word boundaries, you must use the <code>link</code> macro.
+The <code>link</code> macro is a stronger version of a URI macro, which you can think of like an unconstrained macro.
+The URL is preceded by <code>link:</code> and followed by square brackets.
+The square brackets may include optional link text.
+The URL is used for the text of the link if link text is not specified.
+Prior to 1.5.7, if the <code>linkattrs</code> document attribute is set, the text in square brackets is parsed as attributes, which allows a window name or role to be specified.
+Since 1.5.7, attributes are parsed automatically if an equal sign is found after a comma (e.g., <code>[link text,window=_blank]</code>).</p>
+</div>
+<div class="listingblock">
+<div class="title">Anatomy of a link macro</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">link:url[optional link text, optional target attribute, optional role attribute]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s consider a case where we need to use the link macro (instead of just a URI macro) to expand a link when it&#8217;s not adjacent to a word boundary (i.e., unconstrained).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">search/link:https://ecosia.org[Ecosia]</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>search/<a href="https://ecosia.org">Ecosia</a></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If we didn&#8217;t use the <code>link:</code> prefix in this case, the URL macro would not be detected by the parser.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="target-window-and-role-attributes-for-links"><a class="anchor" href="#target-window-and-role-attributes-for-links"></a>Target window and role attributes for links</h4>
+<div id="link-macro-attributes" class="paragraph">
+<p>Prior to 1.5.7, Asciidoctor <em>does not</em> parse attributes in the link macro by default.
+If you want attributes in the link macro to be parsed, you must set the <code>linkattrs</code> document attribute in the header.
+Since 1.5.7, this parsing is automatic (and the attribute is not required) if an equal sign is found after a comma.
+When attribute parsing is enabled, you can then specify the name of the target window using the <code>window</code> attribute.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">= Asciidoctor Document Title
+
+Let's view the raw HTML of the link:view-source:asciidoctor.org[Asciidoctor homepage,window=_blank].</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Let&#8217;s view the raw HTML of the <a href="view-source:asciidoctor.org" target="_blank" rel="noopener">Asciidoctor homepage</a>.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Since <code>_blank</code> is the most common window name, we&#8217;ve introduced shorthand for it.
+Just end the link text with a caret (<code>^</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Let's view the raw HTML of the link:view-source:asciidoctor.org[Asciidoctor homepage^].</code></pre>
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+If you use the caret syntax more than once in a single paragraph, you may need to escape the first occurrence with a backslash.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When attribute parsing is enabled, you can add a role (i.e., CSS class) to the link.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Chat with other Asciidoctor users on the https://discuss.asciidoctor.org/[*mailing list*^,role=green].</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Chat with other Asciidoctor users on the <a href="https://discuss.asciidoctor.org/" class="green" target="_blank" rel="noopener"><strong>mailing list</strong></a>.</p>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Links with attributes (including the subject and body segments on mailto links) are a feature unique to Asciidoctor.
+When they&#8217;re enabled, you must surround the link text in double quotes if it contains a comma.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="links-to-relative-files"><a class="anchor" href="#links-to-relative-files"></a>Links to relative files</h4>
+<div class="paragraph">
+<p>If you want to link to an external file relative to the current document, use the <code>link</code> macro in front of the file name.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">link:protocol.json[Open the JSON file]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If your file is an HTML file, you can link directly to a section in the document, append a hash (<code>#</code>) followed by the section&#8217;s ID to the end of the file name.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">link:external.html#livereload[LiveReload]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For links to relative AsciiDoc documents cross references should be used.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cross-references"><a class="anchor" href="#cross-references"></a>Cross references</h4>
+<div class="paragraph">
+<p>A link to another location within an AsciiDoc document or between AsciiDoc documents is called a <em>cross reference</em> (also referred to as an <em>xref</em>).</p>
+</div>
+<div class="paragraph">
+<p>In Asciidoctor, the inline xref macro is used to create cross references (also called in-text or page citations) to content elements (sections, blocks, or phrases) that have an ID (regardless of whether that ID is explicit or auto-generated).</p>
+</div>
+<div class="paragraph">
+<p>You create a cross reference by enclosing the ID of the target block or section (or the path of another document with an optional anchor) in double angled brackets.</p>
+</div>
+<div class="listingblock">
+<div class="title">Cross reference using the ID of the target section</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">The section &lt;&lt;images&gt;&gt; describes how to insert images into your document.</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Rendered cross reference using the ID of the target section</div>
+<div class="content">
+<div class="paragraph">
+<p>The section <a href="#images">Images</a> describes how to insert images into your document.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also link to a block or section using the title by referencing its title, referred to as a <em class="term">natural cross reference</em>.
+The title must contain at least one space character or contain at least one uppercase letter.
+(If you are using Ruby &lt; 2.4, that uppercase letter is restricted to the basic Latin charset).</p>
+</div>
+<div class="listingblock">
+<div class="title">Cross reference using a section&#8217;s title</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Refer to &lt;&lt;Internal Cross References&gt;&gt;.</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Rendered cross reference using a section&#8217;s title</div>
+<div class="content">
+<div class="paragraph">
+<p>Refer to <a href="#cross-references">Internal Cross References</a>.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Converters usually use the reftext of the target as the default text of the link.
+When the document is parsed, attribute references in the reftext are substituted immediately.
+When the reftext is displayed, additional reftext substitutions are applied to the text (specialchars, quotes, and replacements).</p>
+</div>
+<div class="paragraph">
+<p>You can override the reftext of the target by specifying alternative text at the location of the cross reference.
+After the ID, add a comma and then enter the custom text you want the cross reference to display.</p>
+</div>
+<div class="listingblock">
+<div class="title">Cross reference with custom xreflabel text</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Learn how to &lt;&lt;link-macro-attributes,use attributes within the link macro&gt;&gt;.</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Rendered cross reference using custom xreflabel text</div>
+<div class="content">
+<div class="paragraph">
+<p>Learn how to <a href="#link-macro-attributes">use attributes within the link macro</a>.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also use the inline xref macro as an alternative to the double angled bracket form.</p>
+</div>
+<div class="listingblock">
+<div class="title">Inline xref macro</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Learn how to xref:link-macro-attributes[use attributes within the link macro].</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Cross references can also be used to create a link to a file relative to the current document.
+For links to another AsciiDoc document, this is the preferred way.</p>
+</div>
+<div class="paragraph">
+<p>The trailing hash (<code>#</code>) means that you refer to the top of the document.</p>
+</div>
+<div class="listingblock">
+<div class="title">Cross reference to the top of a relative AsciiDoc document</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Refer to &lt;&lt;document-b.adoc#,Document B&gt;&gt; for more information.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Converted HTML for cross reference to relative AsciiDoc document</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">Refer to &lt;a href="document-b.html"&gt;Document B&lt;/a&gt; for more information.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To link directly to a section in the document, append the section&#8217;s ID after the hash (<code>#</code>).</p>
+</div>
+<div class="listingblock">
+<div class="title">Cross reference to a specific section of a relative AsciiDoc document</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Refer to &lt;&lt;document-b.adoc#section-b,Section B&gt;&gt; for more information.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Converted HTML for cross reference to section of a relative AsciiDoc document</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">Refer to &lt;a href="document-b.html#section-b"&gt;Section B&lt;/a&gt; for more information.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In both cases, this syntax will also work if you are inside the document you are referring to.
+This is useful if you are sharing the same link across multiple documents.</p>
+</div>
+<div class="paragraph">
+<p>In the link that is created from the inter-document cross reference, the source file extension is replaced with the value of the <code>outfilesuffix</code> attribute.
+To customize the file extension used in the target of the link, simply change the value of this attribute.</p>
+</div>
+<div class="paragraph">
+<p>Image references are similar to links since they are also references to URLs or files.
+The difference, of course, is that they display the image in the document.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="images"><a class="anchor" href="#images"></a>Images</h4>
+<div class="paragraph">
+<p>To include an image on its own line (i.e., a <em>block image</em>), use the <code>image::</code> prefix in front of the file name and square brackets after it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">image::sunset.jpg[]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to specify alt text, include it inside the square brackets:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">image::sunset.jpg[Sunset]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also give the image an id, a title (i.e., caption), set its dimensions (i.e., width and height) and make it a link:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[#img-sunset]
+.A mountain sunset
+[link=https://www.flickr.com/photos/javh/5448336655]
+image::sunset.jpg[Sunset,300,200]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The title of a block image is displayed underneath the image when rendered.
+Here&#8217;s a preview:</p>
+</div>
+<div class="exampleblock">
+<div class="title">A hyperlinked image with caption</div>
+<div class="content">
+<div id="img-sunset" class="imageblock">
+<div class="content">
+<a class="image" href="https://www.flickr.com/photos/javh/5448336655"><img src="../images/sunset.jpg" alt="Sunset" width="300" height="200"></a>
+</div>
+<div class="title">A mountain sunset</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Images are resolved relative to the value of the <code>imagesdir</code> document attribute, which defaults to an empty value.
+The <code>imagesdir</code> attribute can be an absolute path, relative path or base URL.
+If the image target is a URL or an absolute path, the <code>imagesdir</code> prefix is <em>not</em> added.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You should use the <code>imagesdir</code> attribute to avoid hard coding the shared path to your images in every image macro.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If you want to include an image inline, use the <code>image:</code> prefix instead (notice there is only one colon):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Press the image:save.png[Save, title="Save"] button.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For inline images, the optional title is displayed as a tooltip.</p>
+</div>
+<div class="paragraph">
+<p>If paragraphs and lists are the meat of the document, then titles and sections are its bones.
+Let&#8217;s explore how to give structure to our document.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="titles-titles-titles"><a class="anchor" href="#titles-titles-titles"></a>Titles, titles, titles</h3>
+<div class="paragraph">
+<p>AsciiDoc supports three types of titles:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Document title</p>
+</li>
+<li>
+<p>Section title</p>
+</li>
+<li>
+<p>Block title</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>All titles are optional in AsciiDoc.
+This section will define each title type and explain how and when to use them.</p>
+</div>
+<div class="sect3">
+<h4 id="document-title"><a class="anchor" href="#document-title"></a>Document title</h4>
+<div class="paragraph">
+<p>Just as every e-mail has a subject, every document (typically) has a title.
+The title goes at the top of an AsciiDoc document.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A document title is an <em>optional</em> feature of an AsciiDoc document.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To create a document title, begin the first line of the document with one equal sign followed by at least one space (<code>= </code>), then the text of the title.
+This syntax is the simplest (and thus recommended) way to declare a document title.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s an example of a document title followed by an abbreviated paragraph:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">= Lightweight Markup Languages
+
+According to Wikipedia...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The document title is part of the document header.
+So, what else can go in the header?
+Good question.</p>
+</div>
+<div class="sect4">
+<h5 id="the-document-header"><a class="anchor" href="#the-document-header"></a>The document header</h5>
+<div class="paragraph">
+<p>Notice the blank line between the title line and the first line of content in the previous example.
+This blank line separates the document header from the document body (in this case a paragraph).
+The document title is part of the document header.
+In all, the document header contains the title, author, revision information and document-wide attributes.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+If the title line is not offset by a blank line, it gets interpreted as a section title, which we&#8217;ll discuss later.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Your document now has a title, but what about an author?
+Just as every e-mail has a sender, every document must surely have an author.
+Let&#8217;s see how to add additional information to the header, including an author.</p>
+</div>
+<div class="paragraph">
+<p>There are two optional lines of text you can add immediately below the document title for defining common document attributes:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Line 1</dt>
+<dd>
+<p>Author name and an optional e-mail address</p>
+</dd>
+<dt class="hdlist1">Line 2</dt>
+<dd>
+<p>An optional revision, a date and an optional remark</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s add these lines to our document:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">= Lightweight Markup Languages
+Doc Writer &lt;doc.writer@asciidoc.org&gt;
+v1.0, 2012-01-01
+
+According to Wikipedia...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The header now contains a document title, an author, a revision number, and a date.
+This information will typically be displayed as a formatted header at the top of the output document.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The header, including the document title, is <em>not required</em>.
+If absent, the AsciiDoc processor will happily convert whatever content is present.
+The header is only used when generating a full document.
+It&#8217;s excluded from the output of an embedded document.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The document header can also be used to define attributes.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="document-attributes"><a class="anchor" href="#document-attributes"></a>Document attributes</h4>
+<div class="paragraph">
+<p>Attributes are one of the features that sets AsciiDoc apart from other lightweight markup languages.
+You can use attributes to toggle features or to store reusable or replacement content.</p>
+</div>
+<div class="paragraph">
+<p>Most often, attributes are defined in the document header.
+There are scenarios where they can be defined inline, but we&#8217;ll focus on the more common usage.</p>
+</div>
+<div class="paragraph">
+<p>An attribute entry consists of a name surrounded by colons at the beginning of the line followed by at least one space, then the content.
+The content is optional.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s an example of an attribute that holds the version of an application:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">= User Guide
+Doc Writer &lt;doc.writer@asciidoc.org&gt;
+2012-01-01
+:appversion: 1.0.0</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+There should be no blank lines between the first attribute entry and the rest of the header.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now you can refer to this attribute anywhere in the document (where attribute substitution is performed) by surrounding the name in curly braces:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">The current version of the application is {appversion}.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Attributes are also commonly used to store URLs, which can get quite lengthy.
+Here&#8217;s an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:fedpkg: https://apps.fedoraproject.org/packages/rubygem-asciidoctor</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s the attribute in use:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Information about the Asciidoctor package for Fedora can found at {fedpkg}.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Document attributes can also be used to toggle settings or set configuration variables that control the output generated by the AsciiDoc processor.</p>
+</div>
+<div class="paragraph">
+<p>For example, to include a table of contents in your document, you can define the <code>toc</code> attribute:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:toc:</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To undefine an attribute, place a <code>!</code> at the end of the name:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:linkcss!:</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also set the base path to images (default: <em>empty</em>), icons (default: <code>./images/icons</code>), stylesheets (default: <code>./stylesheets</code>) and JavaScript files (default: <code>./javascripts</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:imagesdir: ./images
+:iconsdir: ./icons
+:stylesdir: ./styles
+:scriptsdir: ./js</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Attribute values can also be set and overridden when invoking the AsciiDoc processor.
+We&#8217;ll explore that feature later.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When you find yourself typing the same text repeatedly, or text that often needs to be updated, consider assigning it to a document attribute and use that instead.</p>
+</div>
+<div class="paragraph">
+<p>As your document grows, you&#8217;ll want to break the content into sections, like in this guide.
+That&#8217;s accomplished using section titles.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="section-titles"><a class="anchor" href="#section-titles"></a>Section titles</h4>
+<div class="paragraph">
+<p>Sections partition the document into a content hierarchy.
+In AsciiDoc, sections are defined using section titles.</p>
+</div>
+<div class="paragraph">
+<p>A section title uses the same syntax as a document title, except the line may begin with two to six equal signs instead of just a single equal sign.
+The number of equal signs represents the nesting level (using a 0-based index).</p>
+</div>
+<div class="paragraph">
+<p>Here are all the section levels permitted in an AsciiDoc document (for an article doctype, the default), shown below the document title:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">= Document Title (Level 0)
+
+== Level 1 Section
+
+=== Level 2 Section
+
+==== Level 3 Section
+
+===== Level 4 Section
+
+====== Level 5 Section
+
+== Another Level 1 Section</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When the document is converted to HTML 5 (using the built-in <code>html5</code> backend), each section title becomes a heading element where the heading level matches the number of equal signs.
+For example, a level 1 section (2 equal signs) maps to an <code>&lt;h2&gt;</code> element.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Section levels cannot be chosen arbitrarily.
+There are two rules you must follow:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A document can only have multiple level 0 sections if the <code>doctype</code> is set to <code>book</code>.<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p>
+</li>
+<li>
+<p>Section levels cannot be skipped when nesting sections</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For example, the following syntax is illegal:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">= Document Title
+
+= Illegal Level 0 Section (violates rule #1)
+
+== First Section
+
+==== Illegal Nested Section (violates rule #2)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Content above the first section (after the document title) is part of the preamble.
+Once the first section is reached, content is associated with the section that precedes it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">== First Section
+
+Content of first section
+
+=== Nested Section
+
+Content of nested section
+
+== Second Section
+
+Content of second section</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+In addition to the equals marker used for defining single-line section titles, Asciidoctor recognizes the hash symbol (<code>#</code>) from Markdown.
+That means the outline of a Markdown document will convert just fine as an AsciiDoc document.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To have the processor auto-number the sections, define the <code>sectnums</code> attribute in the document header:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:sectnums:</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also use this attribute entry above any section title in the document to toggle the auto-numbering setting.
+When you want to turn off the numbering, add an exclamation point to the end of the attribute name:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:sectnums!:
+
+== Unnumbered Section</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="preamble"><a class="anchor" href="#preamble"></a>Preamble</h5>
+<div class="paragraph">
+<p>Content between the document title and the first section is called the preamble.
+If a document title is not present, this content is not wrapped in a preamble section.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">= Document Title
+
+preamble
+
+another preamble paragraph
+
+== First Section</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+When using the default Asciidoctor stylesheet, this preamble is rendered in the style of a lead (i.e., larger font).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can also assign titles to individual elements.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="block-titles"><a class="anchor" href="#block-titles"></a>Block titles</h4>
+<div class="paragraph">
+<p>You can assign a title to any paragraph, list or delimited block element.
+The title is used as the element&#8217;s caption.
+In most cases, the title is displayed immediately above the content.
+If the content is a figure or image, the title is displayed below the content.</p>
+</div>
+<div class="paragraph">
+<p>A block title is defined on a line above the element.
+The line must begin with a dot (<code>.</code>) and be followed immediately by the title text with no spaces in between.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s an example of a list with a title:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.TODO list
+- Learn the AsciiDoc syntax
+- Install AsciiDoc
+- Write my document in AsciiDoc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Speaking of block titles, let&#8217;s dig into blocks and discover which types of blocks AsciiDoc supports.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="building-blocks-in-asciidoc"><a class="anchor" href="#building-blocks-in-asciidoc"></a>Building blocks in AsciiDoc</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>AsciiDoc provides a nice set of components for including non-paragraph text&#8212;&#8203;such as block quotes, source code listings, sidebars and tables&#8212;&#8203;in your document.
+These components are referred to as <em>delimited blocks</em> because they are surrounded by delimiter lines.</p>
+</div>
+<div class="sect2">
+<h3 id="delimited-blocks"><a class="anchor" href="#delimited-blocks"></a>Delimited blocks</h3>
+<div class="paragraph">
+<p>You&#8217;ve already seen many examples of the listing block (i.e., code block), which is surrounded by lines with four or more hyphens.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">----
+This is an example of a _listing block_.
+The content inside is displayed as &lt;pre&gt; text.
+----</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Within the boundaries of a delimited block, you can enter any content or blank lines.
+The block doesn&#8217;t end until the ending delimiter is found.
+The delimiters around the block determine the type of block, how the content is processed and converted and what elements are used to wrap the content in the output.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s how the block above appears when converted to HTML and viewed in a browser:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>This is an example of a _listing block_.
+The content inside is displayed as &lt;pre&gt; text.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s the HTML source that is generated:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;div class="listingblock"&gt;
+  &lt;div class="content monospaced"&gt;
+    &lt;pre&gt;This is an example of a _listing block_.
+The content inside is displayed as &amp;lt;pre&amp;gt; text.&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should notice a few things about how the content is processed:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the HTML tag <code>&lt;pre&gt;</code> is escaped</p>
+</li>
+<li>
+<p>the endlines are preserved</p>
+</li>
+<li>
+<p>the phrase &#8220;listing block&#8221; is not italicized, despite having underscores around it.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Each type of block is processed according to its purpose.
+Literal blocks don&#8217;t receive the full set of substitutions normally applied to a paragraph.
+Since a listing block is typically used for source code, substitutions are not desirable.</p>
+</div>
+<div class="paragraph">
+<p>The following table identifies the delimited blocks that AsciiDoc provides by default, their purpose and what substitutions are performed on its content.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name (Style)</th>
+<th class="tableblock halign-left valign-top">Line delimiter</th>
+<th class="tableblock halign-left valign-top">Purpose</th>
+<th class="tableblock halign-left valign-top">Substitutions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">comment</p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>////</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Private notes that are not displayed in the output</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">none</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">example</p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>====</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Designates example content or defines an admonition block</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">normal</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">literal</p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>....</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Output text to be displayed exactly as entered</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">verbatim</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">listing, source</p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>----</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Source code or keyboard input to be displayed as entered</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">verbatim</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">open</p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>--</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Anonymous block that can act as any other block (except <em>pass</em> or <em>table</em>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">varies</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pass</p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>++++</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Raw text to be passed through unprocessed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">none</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">quote, verse</p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>____</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A quotation or verse with optional attribution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">normal</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sidebar</p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>****</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Aside text displayed outside the flow of the document</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">normal</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">table</p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>|===</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to display tabular content or advanced layouts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">varies</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+AsciiDoc allows delimited lines to be longer than 4 characters.
+<strong>Don&#8217;t do it.</strong>
+Maintaining long delimiter lines is a <em>colossal</em> waste of time, not to mention arbitrary and error prone.
+Use the minimum line length required to create a delimited block and <em>move on</em> to drafting the content.
+The reader will never see the long delimiters anyway since they are not carried over to the output.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This table shows the substitutions performed by each substitution group referenced in the previous table.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Group / Substitution</th>
+<th class="tableblock halign-left valign-top">Normal</th>
+<th class="tableblock halign-left valign-top">Verbatim</th>
+<th class="tableblock halign-left valign-top">None</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Special chars</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Callouts</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Quotes</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Attributes</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Replacements</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Macros</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock">Post replacements</p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>In order to apply normal substitutions to an attribute value, surround it with single quotes.
+There are two exceptions to this behavior: At the moment normal substitutions are not applied to
+the <code>options</code> and <code>title</code> attribute values.</p>
+</div>
+<div class="paragraph">
+<p>You can control how blocks are displayed using block metadata.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="block-metadata"><a class="anchor" href="#block-metadata"></a>Block metadata</h3>
+<div class="paragraph">
+<p>Metadata can be assigned to any block.
+There are several types of metadata:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Title</p>
+</li>
+<li>
+<p>Id (i.e., anchor)</p>
+</li>
+<li>
+<p>Style (first unnamed block attribute)</p>
+</li>
+<li>
+<p>Named block attributes</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s an example of a quote block that includes all types of metadata:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.Gettysburg Address
+[[gettysburg]]
+[quote, Abraham Lincoln, Address delivered at the dedication of the Cemetery at Gettysburg]
+____
+Four score and seven years ago our fathers brought forth
+on this continent a new nation...
+
+Now we are engaged in a great civil war, testing whether
+that nation, or any nation so conceived and so dedicated,
+can long endure. ...
+____</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s the metadata extracted from this block:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Title</dt>
+<dd>
+<p>Gettysburg Address</p>
+</dd>
+<dt class="hdlist1">Id</dt>
+<dd>
+<p>gettysburg</p>
+</dd>
+<dt class="hdlist1">Style</dt>
+<dd>
+<p>quote</p>
+</dd>
+<dt class="hdlist1">Named block attributes</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">attribution</dt>
+<dd>
+<p>Abraham Lincoln</p>
+</dd>
+<dt class="hdlist1">citetitle</dt>
+<dd>
+<p>Address delivered at the dedication of the Cemetery at Gettysburg</p>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A block can have multiple block attribute lines.
+The attributes will be aggregated.
+If there is a name conflict, the last attribute defined wins.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Some metadata is used as supplementary content, such as the title, whereas other metadata, such as the style, controls how the block is converted.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="masquerading-blocks"><a class="anchor" href="#masquerading-blocks"></a>Masquerading blocks</h3>
+<div class="paragraph">
+<p>Some blocks can masquerade as other blocks, a feature which is controlled by the block style.
+The block style is the first positional attribute in the block attribute list.</p>
+</div>
+<div class="sect3">
+<h4 id="admonition-blocks"><a class="anchor" href="#admonition-blocks"></a>Admonition blocks</h4>
+<div class="paragraph">
+<p>For instance, an example block can act as an admonition block:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[NOTE]
+====
+This is an example of an admonition block.
+
+Unlike an admonition paragraph, it may contain any AsciiDoc content.
+The style can be any one of the admonition labels:
+
+* NOTE
+* TIP
+* WARNING
+* CAUTION
+* IMPORTANT
+====</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="listing-and-source-code-blocks"><a class="anchor" href="#listing-and-source-code-blocks"></a>Listing and source code blocks</h4>
+<div class="paragraph">
+<p>At the start of this tutorial, remember how painful we said it is to insert source code into a document using a traditional word processor.
+They just aren&#8217;t designed for that use case.
+<strong>AsciiDoc is!</strong></p>
+</div>
+<div class="paragraph">
+<p>In fact, inserting source code in an AsciiDoc is incredibly easy.
+Just shove the raw code into a listing block.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">----
+require 'asciidoctor'
+
+puts Asciidoctor.convert_file 'mysample.adoc', to_file: false
+----</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To enable syntax highlighting in the output, set the style on the block to <code>source</code> and specify the source language in the second attribute position.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[source,ruby]
+----
+require 'asciidoctor'
+
+puts Asciidoctor.convert_file 'mysample.adoc', to_file: false
+----</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can even use source code that&#8217;s in a separate file.
+Just use the AsciiDoc include directive:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[source,ruby]
+----
+include::example.rb[]
+----</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To really show how well-suited AsciiDoc is for technical documentation, it also supports callouts in source code.
+Code callouts are used to explain lines of source code.
+The explanations are specified below the listing and keyed by number.
+Here&#8217;s an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[source,ruby]
+----
+require 'asciidoctor'  # &lt;1&gt;
+
+Asciidoctor.convert_file 'mysample.adoc'  # &lt;2&gt;
+----
+&lt;1&gt; Imports the library
+&lt;2&gt; Reads, parses, and converts the file</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s how the callouts appear when rendered:</p>
+</div>
+<div id="eg-callouts" class="exampleblock">
+<div class="title">Source code with callouts</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">require 'asciidoctor'  <i class="conum" data-value="1"></i><b>(1)</b>
+
+puts Asciidoctor.convert_file 'mysample.adoc'  <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Imports the library</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Reads, parses, and converts the file</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="open-blocks"><a class="anchor" href="#open-blocks"></a>Open blocks</h4>
+<div class="paragraph">
+<p>The most versatile block of all is the open block.
+An open block can act as any other block, with the exception of <em>pass</em> and <em>table</em>.
+Here&#8217;s an example of an open block acting as a sidebar:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[sidebar]
+.Related information
+--
+This is aside text.
+
+It is used to present information related to the main content.
+--</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pass-blocks"><a class="anchor" href="#pass-blocks"></a>Passthrough blocks</h4>
+<div class="paragraph">
+<p>The &#8220;anything goes&#8221; mechanism in AsciiDoc is the passthrough block.
+As the name implies, this block passes the content of the block directly through to the output document.
+When you&#8217;ve encountered a complex requirement that you cannot meet using the AsciiDoc syntax, a passthrough block can come in very handy.</p>
+</div>
+<div class="paragraph">
+<p>For example, let&#8217;s say you want to embed a GitHub gist into your document.
+You can define the following passthrough block:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">++++
+&lt;script src="https://gist.github.com/piscisaureus/3342247.js"&gt;&lt;/script&gt;
+++++</code></pre>
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Using a passthrough block couples your content to a specific output format, such as HTML.
+If you&#8217;re going to use a passthrough block, we recommend using {user-ref}#conditional-preprocessor-directives[conditional preprocessor directives] to associate the format-specific content with each backend you intend to support.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delimiters-optional"><a class="anchor" href="#delimiters-optional"></a>Delimiters optional</h3>
+<div class="paragraph">
+<p>If the content is contiguous (not interrupted by blank lines), you can forgo the use of the block delimiters and instead use the block style above a paragraph to repurpose it as one of the delimited block types.</p>
+</div>
+<div class="paragraph">
+<p>This format is often used for single-line listings:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[listing]
+sudo dnf install asciidoc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or single-line quotes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[quote]
+Never do today what you can put off 'til tomorrow.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>While most blocks are linear, tables give you the ability to layout content horizontally as well.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="a-new-perspective-on-tables"><a class="anchor" href="#a-new-perspective-on-tables"></a>A new perspective on tables</h3>
+<div class="paragraph">
+<p>Tables are one of the most refined areas of the AsciiDoc syntax.
+They are easy to create, easy to read in raw form and also remarkably sophisticated.
+I recommend that you use tables sparingly because they interrupt the conversation with your readers.
+When they are the most suitable way to present the information, know that you&#8217;ve got a powerful tool in your hands.</p>
+</div>
+<div class="paragraph">
+<p>You can think of a table as a delimited block that contains one or more bulleted lists.
+The list marker is a vertical bar (<code>|</code>).
+Each list represents one row in the table and must share the same number of items (taking into account any column or row spans).</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s a simple example of a table with two columns and three rows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[cols=2*]
+|===
+|Firefox
+|Web Browser
+
+|Ruby
+|Programming Language
+
+|TorqueBox
+|Application Server
+|===</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The first non-blank line inside the block delimiter (<code>|===</code>) determines the number of columns.
+Since we are putting each column title on a separate line, we have to use the <code>cols</code> block attribute to explicitly state that this table has two columns.
+The <code>*</code> is the repeat operator.
+It means to repeat the column specification for the remainder of columns.
+In this case, it means to repeat no special formatting (since none is present) across 2 columns.</p>
+</div>
+<div class="paragraph">
+<p>We can make the first row of the table the header by setting the <code>header</code> option on the table.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[cols=2*,options=header]
+|===
+|Name
+|Group
+
+|Firefox
+|Web Browser
+
+|Ruby
+|Programming Language
+
+...
+|===</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also define the <code>header</code> option using the following shorthand:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[%header,cols=2*]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, we could define the header row on a single line offset from the body rows by a blank line, so neither the <code>cols</code> nor the <code>options</code> attributes are required.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">|===
+|Name |Group
+
+|Firefox
+|Web Browser
+
+...
+|===</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The content of each item (i.e., cell) can span multiple lines, as is the case with other lists in AsciiDoc.
+Unlike other lists, the content of each cell may contain blank lines without the need for a list continuation to hold them together.
+A new cell begins when another non-escaped vertical bar (<code>|</code>) is encountered.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">|===
+|Name |Group |Description
+
+|Firefox
+|Web Browser
+|Mozilla Firefox is an open-source web browser.
+It's designed for standards compliance,
+performance, portability.
+
+|Ruby
+|Programming Language
+|A programmer's best friend.
+
+...
+|===</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can set the relative widths of each column using <em>column specifiers</em>&#8212;a comma-separated list of relative values defined in the <code>cols</code> block attribute.
+The number of entries in the list determines the number of columns.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[cols="2,3,5"]
+|===
+|Name |Group |Description
+
+|Firefox
+|Web Browser
+|Mozilla Firefox is an open-source web browser.
+It's designed for standards compliance,
+performance and portability.
+
+|Ruby
+|Programming Language
+|A programmer's best friend.
+
+...
+|===</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to include blocks or lists inside the contents of a column, you can put an <code>a</code> (for AsciiDoc) at the end of the column&#8217;s relative value.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[cols="2,3,5a"]
+|===
+|Name |Group |Description
+
+|Firefox
+|Web Browser
+|Mozilla Firefox is an open-source web browser.
+It's designed for:
+
+* standards compliance,
+* performance and
+* portability.
+
+|Ruby
+|Programming Language
+|A programmer's best friend.
+
+...
+|===</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can apply the AsciiDoc style to an individual cell by prefixing the vertical bar with an <code>a</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">a|Mozilla Firefox is an open-source web browser.
+It's designed for:
+
+* standards compliance,
+* performance and
+* portability.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There&#8217;s a whole collection of column and cell specifiers you can use to format the contents of the table, including styling and alignment.</p>
+</div>
+<div class="paragraph">
+<p>AsciiDoc tables can also be created directly from CSV data.
+Just set the <code>format</code> block attribute to <code>csv</code> and insert CSV data inside the block delimiters, either directly:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[%header,format=csv]
+|===
+Artist,Track,Genre
+Baauer,Harlem Shake,Hip Hop
+The Lumineers,Ho Hey,Folk Rock
+|===</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or using an <code>include::[]</code> directive:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[%header,format=csv]
+|===
+include::tracks.csv[]
+|===</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Asciidoctor 0.1.3 also recognizes shorthand notation for setting CSV and DSV table formats.
+The first position of the table block delimiter (i.e., <code>|===</code>) can be replaced by a data delimiter to set the table format accordingly.</p>
+</div>
+<div class="paragraph">
+<p>Instead of specifying the <code>csv</code> format using an attribute, you can simply replace the leading pipe (<code>|</code>) with a comma (<code>,</code>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">,===
+a,b,c
+,===</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the same way, the <code>dsv</code> format can be specified by replacing the leading pipe (<code>|</code>) with a colon (<code>:</code>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:===
+a:b:c
+:===</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That&#8217;s a pretty powerful option.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="what-else-can-asciidoc-do"><a class="anchor" href="#what-else-can-asciidoc-do"></a>What else can AsciiDoc do?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We&#8217;ve covered many of the features of the AsciiDoc syntax, but it still has much more depth.
+AsciiDoc is simple enough for a README, yet can scale to meet the requirements of a publisher.</p>
+</div>
+<div class="paragraph">
+<p>Here are some of the features that the AsciiDoc syntax supports:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>footnotes</p>
+</li>
+<li>
+<p>indexes</p>
+</li>
+<li>
+<p>appendix, preface, dedication, partintro</p>
+</li>
+<li>
+<p>multi-line attributes</p>
+</li>
+<li>
+<p>preprocessor directive (conditional markup)</p>
+</li>
+<li>
+<p>mathematical formulas</p>
+</li>
+<li>
+<p>musical notation</p>
+</li>
+<li>
+<p>diagrams</p>
+</li>
+<li>
+<p>block filters</p>
+</li>
+<li>
+<p>themes</p>
+</li>
+<li>
+<p>custom blocks, macros and output formats</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Consult the {user-ref}[Asciidoctor User Manual] to continue exploring the syntax and processor capabilities.</p>
+</div>
+<div class="paragraph">
+<p>That&#8217;s enough syntax for now.
+You&#8217;ve created your first AsciiDoc document.
+Now it&#8217;s time to convert the document into a presentable format.
+This will give you a real appreciation for the power that AsciiDoc puts in your hands.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="converting-your-document"><a class="anchor" href="#converting-your-document"></a>Converting your document</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While AsciiDoc syntax is designed to be readable in raw form, the intended audience for that format are writers and editors.
+Readers aren&#8217;t going to appreciate the raw text nearly as much.
+Aesthetics matter.
+You&#8217;ll want to apply nice typography with font sizes that adhere to the &#8220;golden ratio&#8221;, colors, icons and images to give it the respect it deserves.
+That&#8217;s where the Asciidoctor processor comes in (<strong>after</strong> you have done the writing).</p>
+</div>
+<div class="paragraph">
+<p>The Asciidoctor processor parses the document and translates it into a backend format, such as HTML, ePub, DocBook or PDF.
+Asciidoctor ships with a set of default templates in the tin, but you can customize the templates or create your own to get exactly the output you want.</p>
+</div>
+<div class="paragraph">
+<p>Before you can use the Asciidoctor processor, you have to install the <a href="https://rubygems.org/gems/asciidoctor">Asciidoctor Ruby Gem</a>.
+Review the <a href="https://asciidoctor.org/docs/install-toolchain/">Asciidoctor Installation Guide</a> if you need help to install the gem.</p>
+</div>
+<div class="sect2">
+<h3 id="converting-a-document-to-html-5"><a class="anchor" href="#converting-a-document-to-html-5"></a>Converting a document to HTML 5</h3>
+<div class="paragraph">
+<p>Asciidoctor provides both a command line tool and a Ruby API for converting AsciiDoc documents to HTML 5, Docbook 5.0 and custom output formats.</p>
+</div>
+<div class="paragraph">
+<p>To use Asciidoctor to generate an HTML document, type <code>asciidoctor</code> followed by your document&#8217;s name on the command line.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ asciidoctor mysample.adoc</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In Asciidoctor, the <strong>html5</strong> backend is the default, so there&#8217;s no need to specify a backend explicitly to generate an HTML 5 document.</p>
+</div>
+<div class="paragraph">
+<p>Asciidoctor also provides a Ruby API, so you can generate an HTML document directly from a Ruby application:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">require 'asciidoctor'
+
+Asciidoctor.convert_file 'mysample.adoc'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can capture the HTML output into a variable instead of writing it to a file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">html = Asciidoctor.convert_file 'mysample.adoc', to_file: false, header_footer: true
+puts html</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To generate DocBook, just specify the backend option:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">Asciidoctor.convert_file 'mysample.adoc', backend: 'docbook'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>One of the strengths of Asciidoctor is that it can output to a variety of formats, not just HTML.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="converting-a-document-to-docbook"><a class="anchor" href="#converting-a-document-to-docbook"></a>Converting a document to DocBook</h3>
+<div class="paragraph">
+<p>Despite the fact that writing in DocBook is inhumane, it&#8217;s useful as a portable document format.
+Since AsciiDoc syntax was designed with DocBook output in mind, the conversion is very good.
+There&#8217;s a corresponding DocBook element for each markup in the AsciiDoc syntax.</p>
+</div>
+<div class="paragraph">
+<p>Asciidoctor provides a Docbook 5.0 backend out of the box.
+To convert the document to Docbook 5.0, call the processor with the backend flag set to <code>docbook5</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ asciidoctor -b docbook5 mysample.adoc</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A new XML document, named <code>mysample.xml</code>, will now be present in the current directory:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ ls -1
+mysample.adoc
+mysample.html
+mysample.xml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you&#8217;re on Linux, you can view the DocBook file using Yelp:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ yelp mysample.xml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>DocBook is only an intermediary format in the Asciidoctor toolchain.
+You&#8217;ll either feed it into a system that processes DocBook (like <a href="https://fedorahosted.org/publican">publican</a>), or you can convert it to PDF using the <a href="https://github.com/asciidoctor/asciidoctor-fopub/blob/master/README.adoc">asciidoctor-fopub tool</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="output-galore"><a class="anchor" href="#output-galore"></a>Output galore</h3>
+<div class="paragraph">
+<p>There&#8217;s really no end to the customization you can do to the output the Asciidoctor processor generates.
+We&#8217;ve just scratched the surface here.</p>
+</div>
+<div class="paragraph">
+<p>Check out the {user-ref}[Asciidoctor User Manual] and the <a href="https://asciidoctor.org/docs">Asciidoctor Docs Page</a> to learn more.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="where-else-is-asciidoc-supported"><a class="anchor" href="#where-else-is-asciidoc-supported"></a>Where else is AsciiDoc supported?</h3>
+<div class="paragraph">
+<p>The easiest way to experiment with AsciiDoc is online.
+AsciiDoc document in a GitHub repository or a <a href="https://gist.github.com">gist</a> is automatically converted to HTML and rendered in the web interface.</p>
+</div>
+<div class="paragraph">
+<p>If you have a project on GitHub, you can write the README or any other documentation in AsciiDoc and the GitHub interface will show the HTML output for visitors to view.</p>
+</div>
+<div class="paragraph">
+<p>Gists, in particular, are a great way to experiment with AsciiDoc.
+Just create a new gist, name the file with the extension <code>.adoc</code> and enter AsciiDoc markup.
+You can save the document as public or secret.
+If you want to try AsciiDoc without installing any software, a gist is a great way to get started.</p>
+</div>
+<div class="paragraph">
+<p>While there&#8217;s plenty more of the AsciiDoc syntax and toolchain to explore, you know more than enough about it to write a range of documentation, from a simple README to a comprehensive user guide.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="wrap-up"><a class="anchor" href="#wrap-up"></a>Wrap-up</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Writing in AsciiDoc should be no more complex than writing an e-mail.
+All you need to compose a document in AsciiDoc is open a text editor and type regular paragraphs.
+Only when you need additional semantics or formatting do you need to introduce markup.
+Let your instinct guide you when you need to remember what punctuation to use.
+The AsciiDoc syntax is based on time-tested plain-text conventions from the last several decades of computing.
+Hopefully you agree that the markup does not detract from the readability of the text in raw form, as that&#8217;s a key goal of lightweight markup languages like AsciiDoc.</p>
+</div>
+<div class="paragraph">
+<p>As humans, communication is what connects us through the ages and allows us to pass on knowledge.
+AsciiDoc enables you to focus on communicating rather than distracting you with other stuff that just gets in the way.
+Copy the text of an e-mail into a document and see how easy it to repurpose it as documentation.
+Almost immediately, you&#8217;ll find your writing zen and enjoy the rewarding experience of producing.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="glossary"><a class="anchor" href="#glossary"></a>Glossary</h2>
+<div class="sectionbody">
+<div class="dlist glossary">
+<dl>
+<dt>admonition paragraph</dt>
+<dd>
+<p>a callout paragraph that has a label or icon indicating its priority</p>
+</dd>
+<dt>admonition block</dt>
+<dd>
+<p>a callout block containing complex content that has a label or icon indicating its priority</p>
+</dd>
+<dt>backend</dt>
+<dd>
+<p>a set of templates for converting AsciiDoc source to different output format</p>
+</dd>
+<dt>cross reference</dt>
+<dd>
+<p>a link from one location in the document to another location marked by an anchor</p>
+</dd>
+<dt>list continuation</dt>
+<dd>
+<p>a plus sign (<code>+</code>) on a line by itself that connects adjacent lines of text to a list item</p>
+</dd>
+<dt>quoted text</dt>
+<dd>
+<p>text which is enclosed in special punctuation to give it emphasis or special meaning</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. The default doctype is <code>article</code>, which only allows one level 0 section (i.e., the document title).
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-03-26 15:52:53 +0100
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
+<script>
+if (!hljs.initHighlighting.called) {
+  hljs.initHighlighting.called = true
+  ;[].slice.call(document.querySelectorAll('pre.highlight > code')).forEach(function (el) { hljs.highlightBlock(el) })
+}
+</script>
+</body>
+</html>
