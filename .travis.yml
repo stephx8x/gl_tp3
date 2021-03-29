@@ -5,6 +5,6 @@ python:
   - "3.8"
 
 script:
-  - python -m pip install tox
+  - python -m pip install tox-travis
   - python -V
   - python -m tox
