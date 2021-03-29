@@ -3,8 +3,9 @@ language: python
 python:
   - "3.4"
   - "3.8"
-install:
-  - pip install tox-travis
+  - "3.9"
+
 script:
+  - python -m pip install --user tox
   - python -V
   - python -m tox
