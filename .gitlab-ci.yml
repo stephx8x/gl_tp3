@@ -8,9 +8,7 @@ pages:
   - gem install asciidoctor-pdf --pre
   - gem install wkhtmltox
   - python -V
-  - sudo easy_install pip
-  - pip install virtualenv
-  - virtualenv venv
+  - py -m tox
   - mkdir public
   - asciidoctor text1.adoc -o public/index.html
   - asciidoctor-pdf text1.adoc -o public/documentation.pdf
