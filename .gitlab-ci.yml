@@ -8,8 +8,7 @@ pages:
   - gem install asciidoctor-pdf --pre
   - gem install wkhtmltox
   - python -V
-  - pip2 -V
-  - pip3 -V
+  - sudo apt update
   - mkdir public
   - asciidoctor text1.adoc -o public/index.html
   - asciidoctor-pdf text1.adoc -o public/documentation.pdf
