@@ -20,8 +20,8 @@ pages:
   - gem install wkhtmltox
   - python -V
   - mkdir public
-  - asciidoctor text1.adoc -o public/index.html
   - asciidoctor-pdf text1.adoc -o public/documentation.pdf
+  - asciidoctor text1.adoc -o public/index.html
 # rajoutez ici la génération du index.html ainsi que du fichier pdf
 # dans un sous-répertoire que vous nommerez "public"
 

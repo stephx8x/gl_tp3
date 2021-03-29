@@ -3,3 +3,7 @@ Elle se poursuit avec une seconde ligne qui fait elle même partie du paragraphe
 
 Texte avec saut de ligne force +
 Ligne suivante
+
+Refer to xref:documentation.pdf[documentation.pdf] for more information.
+
+<a href="livre.pdf">livre.pdf</a>
