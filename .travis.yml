@@ -11,6 +11,10 @@ before_install:
   - gem install asciidoctor-pdf --pre # pour générer le PDF
 
 script:
+  - python -V
+  - pip install pip
+  - python -m pip install --user tox
+  - python -m tox
 # mettez ici compilation et génération de documentation
 
 deploy:
