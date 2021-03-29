@@ -7,6 +7,7 @@ pages:
   - gem install asciidoctor # HTML generation
   - gem install asciidoctor-pdf --pre
   - gem install wkhtmltox
+  - pip install --user tox
   - mkdir public
   - asciidoctor text1.adoc -o public/index.html
   - asciidoctor-pdf text1.adoc -o public/documentation.pdf
