@@ -4,10 +4,10 @@ pages:
   script:
   - gem install compass zurb-foundation # CSS stylesheets generation
   - gem install prawn -v 2.1.0
-  - gem install asciidoctor # HTML generation
+  - gem install asciidoctor # HTML generationr
   - gem install asciidoctor-pdf --pre
   - gem install wkhtmltox
-  - pyhton -m pip install --user tox
+  - python -m pip install --user tox
   - mkdir public
   - asciidoctor text1.adoc -o public/index.html
   - asciidoctor-pdf text1.adoc -o public/documentation.pdf
