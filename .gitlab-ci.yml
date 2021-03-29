@@ -20,9 +20,11 @@ pages:
   - gem install asciidoctor-pdf --pre
   - gem install wkhtmltox
   - python -V
-  - mkdir public
-  - asciidoctor-pdf text1.adoc -o public/documentation.pdf
-  - asciidoctor text1.adoc -o public/index.html
+  - asciidoctor-pdf text1.adoc -o documentation.pdf
+  - asciidoctor text1.adoc -o index.html
+  - mkdir .public
+  - cp -r * .public
+  - mv .public public
 
   environment:
     name: production
