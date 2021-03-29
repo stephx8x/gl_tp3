@@ -6,7 +6,7 @@ build:
     - pip install pip
     - python -V
     - python -m pip install --user tox
-    - python -m tox
+    - python -m to
 
 pages:
   image: ruby
