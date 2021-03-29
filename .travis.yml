@@ -18,7 +18,7 @@ script:
   - python -m pip install --upgrade pip
   - pip install pip
   - python -m pip install unittest
-  - python -m pip install --user tox
+  - python -m pip install tox
   - python -m tox
 # mettez ici compilation et génération de documentation
 
