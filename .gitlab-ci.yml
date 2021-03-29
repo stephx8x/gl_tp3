@@ -6,9 +6,14 @@ build:
     - pip install pip
     - python -V
     - python -m pip install --user tox
-    - python -m to
+
+test:
+  stage: test
+  script:
+    - python -m tox
 
 pages:
+  stgage: deploy
   image: ruby
   script:
   - gem install compass zurb-foundation # CSS stylesheets generation
