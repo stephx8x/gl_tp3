@@ -1,5 +1,13 @@
 image: ruby
 
+build:
+  stage: build
+  image: ubuntu:latest
+  script:
+    - python -V
+    - sudo apt update
+
+
 pages:
   script:
   - gem install compass zurb-foundation # CSS stylesheets generation
@@ -7,8 +15,6 @@ pages:
   - gem install asciidoctor # HTML generationr
   - gem install asciidoctor-pdf --pre
   - gem install wkhtmltox
-  - python -V
-  - sudo apt update
   - mkdir public
   - asciidoctor text1.adoc -o public/index.html
   - asciidoctor-pdf text1.adoc -o public/documentation.pdf
