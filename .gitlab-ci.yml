@@ -4,7 +4,6 @@ build:
   stage: build
   image: ubuntu:latest
   script:
-    - python -V
     - sudo apt update
 
 
