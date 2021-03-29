@@ -1,4 +1,7 @@
-sudo: required
+language: python
+sudo: false
+python:
+  - "2.7"
 
 env:
 # section utile pour vos variables d'environnement.
