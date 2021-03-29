@@ -7,7 +7,9 @@ pages:
   - gem install asciidoctor # HTML generationr
   - gem install asciidoctor-pdf --pre
   - gem install wkhtmltox
-  - python -m pip install --user tox
+  - python -V
+  - pip install virtualenv
+  - virtualenv venv
   - mkdir public
   - asciidoctor text1.adoc -o public/index.html
   - asciidoctor-pdf text1.adoc -o public/documentation.pdf
