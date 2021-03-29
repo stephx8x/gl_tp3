@@ -24,11 +24,6 @@ pages:
   - asciidoctor-pdf text1.adoc -o public/documentation.pdf
   - asciidoctor text1.adoc -o public/index.html
 
-  environment:
-    name: production
-    url: 'https://stephx8x.gitlab.io/gl_tp3_gitlab'
-
-
   artifacts:
     paths:
     - public
