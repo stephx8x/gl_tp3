@@ -7,4 +7,3 @@ script:
   - python -m pip install tox-travis
   - python -V
   - python -m tox
-  - python
