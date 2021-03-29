@@ -13,6 +13,7 @@ before_install:
 script:
   - python -V
   - pip install pip
+  - python -m pip install unittest
   - python -m pip install --user tox
   - python -m tox
 # mettez ici compilation et génération de documentation

@@ -1,0 +1,34 @@
+action: GLOB, msg: packaging
+cwd: C:\Users\sidious\Desktop\universite\L3_3\s5\genie_logiciel\tp\tp3
+cmd: 'C:\Users\sidious\AppData\Local\Programs\Python\Python38\python.exe' setup.py sdist --formats=zip --dist-dir '.tox\dist'
+running sdist
+running egg_info
+writing fizzbuzz.egg-info\PKG-INFO
+writing dependency_links to fizzbuzz.egg-info\dependency_links.txt
+writing top-level names to fizzbuzz.egg-info\top_level.txt
+reading manifest file 'fizzbuzz.egg-info\SOURCES.txt'
+writing manifest file 'fizzbuzz.egg-info\SOURCES.txt'
+warning: sdist: standard file not found: should have one of README, README.rst, README.txt, README.md
+
+running check
+creating fizzbuzz-3.8.6
+creating fizzbuzz-3.8.6\fizzbuzz.egg-info
+copying files to fizzbuzz-3.8.6...
+copying setup.py -> fizzbuzz-3.8.6
+copying fizzbuzz.egg-info\PKG-INFO -> fizzbuzz-3.8.6\fizzbuzz.egg-info
+copying fizzbuzz.egg-info\SOURCES.txt -> fizzbuzz-3.8.6\fizzbuzz.egg-info
+copying fizzbuzz.egg-info\dependency_links.txt -> fizzbuzz-3.8.6\fizzbuzz.egg-info
+copying fizzbuzz.egg-info\top_level.txt -> fizzbuzz-3.8.6\fizzbuzz.egg-info
+Writing fizzbuzz-3.8.6\setup.cfg
+creating .tox\dist
+creating '.tox\dist\fizzbuzz-3.8.6.zip' and adding 'fizzbuzz-3.8.6' to it
+adding 'fizzbuzz-3.8.6'
+adding 'fizzbuzz-3.8.6\fizzbuzz.egg-info'
+adding 'fizzbuzz-3.8.6\PKG-INFO'
+adding 'fizzbuzz-3.8.6\setup.cfg'
+adding 'fizzbuzz-3.8.6\setup.py'
+adding 'fizzbuzz-3.8.6\fizzbuzz.egg-info\dependency_links.txt'
+adding 'fizzbuzz-3.8.6\fizzbuzz.egg-info\PKG-INFO'
+adding 'fizzbuzz-3.8.6\fizzbuzz.egg-info\SOURCES.txt'
+adding 'fizzbuzz-3.8.6\fizzbuzz.egg-info\top_level.txt'
+removing 'fizzbuzz-3.8.6' (and everything under it)
