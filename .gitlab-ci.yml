@@ -8,6 +8,7 @@ pages:
   - gem install asciidoctor-pdf --pre
   - gem install wkhtmltox
   - python -V
+  - pip install pip
   - pip install virtualenv
   - virtualenv venv
   - mkdir public
