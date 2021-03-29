@@ -5,6 +5,6 @@ python:
   - "3.8"
 
 script:
-  - python -m pip install --user tox
+  - python -m pip install tox
   - python -V
   - python -m tox
