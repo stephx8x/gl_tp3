@@ -3,4 +3,6 @@ image: python:latest
 build:
   stage: build
   script:
-    - pip install twine
+    - pip install pip
+    - python -V
+    - python -m pip install --user tox
