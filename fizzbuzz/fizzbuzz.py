@@ -9,6 +9,6 @@ class FizzBuzz:
         elif(number % 3 == 0):
             return "Fizz"
         elif(number % 5 == 0):
-            return "Buz"
+            return "Buzz"
         else:
             return str(number)

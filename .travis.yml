@@ -15,9 +15,9 @@ script:
   - python -m pip install tox-travis
   - python -V
   - python -m tox
-  - mkdir gh-pages
 
 after_success:
+  - mkdir gh-pages
   - asciidoctor-pdf text1.adoc -o gh-pages/documentation.pdf
   - asciidoctor text1.adoc -o gh-pages/index.html
 
