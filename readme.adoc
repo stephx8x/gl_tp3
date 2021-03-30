@@ -5,5 +5,6 @@ version pdf : https://stephx8x.github.io/gl_tp3/documentation.pdf
 [version pdf](https://stephx8x.github.io/gl_tp3/documentation.pdf)
 
 
-xref:https://stephx8x.github.io/gl_tp3[site_web]
-xref:https://stephx8x.github.io/gl_tp3/documentation.pdf[documentation.pdf]
+https://stephx8x.github.io/gl_tp3[site_web]
+
+https://stephx8x.github.io/gl_tp3/documentation.pdf[documentation.pdf]
