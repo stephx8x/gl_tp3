@@ -1,7 +1,7 @@
 Première ligne du paragraphe.
 Elle se poursuit avec une seconde ligne qui fait elle même part du paragraphe
 
-Texte aveccccccccccccccc saut de ligne force +
+Texte avec saut de ligne force +
 Ligne suivante
 
 <a href="livre.pdf">livre.pdf</a>
