@@ -10,11 +10,10 @@ before_install:
   - gem install asciidoctor-pdf --pre # pour générer le PDF
 
 
+install: pip install tox
 
 script:
-  - python -m pip install tox-travis
-  - python -V
-  - python -m tox
+  - tox
 
 after_success:
   - mkdir gh-pages
