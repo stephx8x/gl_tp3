@@ -5,7 +5,7 @@ python:
 
 
 before_install:
-  - gem install prawn -v 2.1.0   # dependance d'asciidoctor
+  - gem install prawn -v 2.1.0   # dependance d'asciidocto
   - gem install asciidoctor      # pour générer votre HTML
   - gem install asciidoctor-pdf --pre # pour générer le PDF
 
