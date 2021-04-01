@@ -13,12 +13,8 @@ before_install:
 install: pip install tox
 
 script:
-  - tox
-
-after_success:
-  - mkdir gh-pages
-  - asciidoctor-pdf text1.adoc -o gh-pages/documentation.pdf
-  - asciidoctor text1.adoc -o gh-pages/index.html
+  - chmod +x scripts/run-tests.sh
+  - ./scripts/run-tests.sh
 
 
 deploy:
