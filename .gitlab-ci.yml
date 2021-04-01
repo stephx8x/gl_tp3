@@ -26,7 +26,7 @@ pages:
 
   artifacts:
     paths:
-    - public
+    - public #chemin pour le prochain stage
 
   only:
   - master
